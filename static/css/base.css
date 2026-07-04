@@ -1,0 +1,98 @@
+/* ==========================
+   GLOBAL RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#F4F7FC;
+
+    color:#1E293B;
+
+    overflow-x:hidden;
+
+}
+
+a{
+
+    text-decoration:none;
+    color:inherit;
+
+}
+
+img{
+
+    max-width:100%;
+    display:block;
+
+}
+
+button{
+
+    border:none;
+    cursor:pointer;
+
+}
+
+/* ==========================
+   MAIN CONTENT
+========================== */
+
+.main-content{
+
+    margin-left:0;
+    margin-top:80px;
+
+    padding:35px;
+
+    min-height:100vh;
+
+    transition:.35s ease;
+
+}
+
+/* Shift only when sidebar opens */
+
+.main-content.shift{
+
+    margin-left:280px;
+
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    box-shadow:0 12px 35px rgba(15,23,42,.08);
+
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#22C55E;
+    border-radius:20px;
+
+}

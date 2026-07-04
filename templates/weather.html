@@ -1,0 +1,287 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+Weather
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/weather.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="weather-page">
+
+    <!-- =========================
+            HERO
+    ========================== -->
+
+    <section class="weather-hero">
+
+        <div class="hero-left">
+
+            <div class="hero-badge">
+
+                🌦 Live Weather
+
+            </div>
+
+            <h1>
+
+                Current Weather in Pune
+
+            </h1>
+
+            <p>
+
+                Get real-time weather updates and AI farming advice
+                to plan irrigation and crop management efficiently.
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <img
+                src="https://openweathermap.org/img/wn/{{ weather.icon }}@4x.png"
+                alt="Weather Icon">
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            WEATHER CARDS
+    ========================== -->
+
+    <section class="weather-cards">
+
+        <div class="weather-card">
+
+            <div class="icon">🌡</div>
+
+            <h4>Temperature</h4>
+
+            <h2>{{ weather.temperature }}°C</h2>
+
+            <small>Current</small>
+
+        </div>
+
+        <div class="weather-card">
+
+            <div class="icon">💧</div>
+
+            <h4>Humidity</h4>
+
+            <h2>{{ weather.humidity }}%</h2>
+
+            <small>Relative Humidity</small>
+
+        </div>
+
+        <div class="weather-card">
+
+            <div class="icon">☁</div>
+
+            <h4>Condition</h4>
+
+            <h2>{{ weather.condition }}</h2>
+
+            <small>Sky Status</small>
+
+        </div>
+
+        <div class="weather-card">
+
+            <div class="icon">💨</div>
+
+            <h4>Wind Speed</h4>
+
+            <h2>{{ weather.wind }} km/h</h2>
+
+            <small>Live Wind</small>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            AI WEATHER ADVICE
+    ========================== -->
+
+    <section class="weather-advice">
+
+        <div class="section-title">
+
+            🤖 AI Weather Recommendation
+
+        </div>
+
+        <div class="advice-card">
+
+            {% if weather.temperature > 35 %}
+
+                <div class="tip">
+                    🔥 High temperature detected. Irrigate crops during early morning or evening.
+                </div>
+
+            {% endif %}
+
+            {% if weather.humidity > 80 %}
+
+                <div class="tip">
+                    💧 High humidity may increase fungal disease risk. Monitor crop leaves.
+                </div>
+
+            {% endif %}
+
+            {% if weather.condition == "Rain" %}
+
+                <div class="tip">
+                    🌧 Rain is expected. Avoid unnecessary irrigation today.
+                </div>
+
+            {% endif %}
+
+            <div class="tip">
+
+                🌱 Weather conditions are continuously monitored to support better farming decisions.
+
+            </div>
+                        <div class="weather-highlights">
+
+                <div class="highlight">
+
+                    <span>🌅</span>
+
+                    <div>
+
+                        <h4>Best Irrigation Time</h4>
+
+                        <p>Early Morning (6 AM - 8 AM)</p>
+
+                    </div>
+
+                </div>
+
+                <div class="highlight">
+
+                    <span>🌞</span>
+
+                    <div>
+
+                        <h4>Sunlight</h4>
+
+                        <p>Suitable for photosynthesis today.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="highlight">
+
+                    <span>🌾</span>
+
+                    <div>
+
+                        <h4>Crop Health</h4>
+
+                        <p>Continue regular field monitoring.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            TODAY'S FARM TIPS
+    ========================== -->
+
+    <section class="tips-section">
+
+        <h2>🌱 Today's Smart Farming Tips</h2>
+
+        <div class="tips-grid">
+
+            <div class="tip-card">
+
+                <div class="tip-icon">💧</div>
+
+                <h3>Water Management</h3>
+
+                <p>
+                    Irrigate only if soil moisture is low.
+                    Avoid overwatering.
+                </p>
+
+            </div>
+
+            <div class="tip-card">
+
+                <div class="tip-icon">🌦</div>
+
+                <h3>Weather Monitoring</h3>
+
+                <p>
+                    Check weather regularly before spraying
+                    fertilizers or pesticides.
+                </p>
+
+            </div>
+
+            <div class="tip-card">
+
+                <div class="tip-icon">🌿</div>
+
+                <h3>Crop Care</h3>
+
+                <p>
+                    Inspect leaves for diseases after periods
+                    of high humidity.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            FOOTER INFO
+    ========================== -->
+
+    <section class="weather-footer">
+
+        <div class="footer-card">
+
+            🤖 Powered by <b>AgriMitra AI</b>
+
+        </div>
+
+        <div class="footer-card">
+
+            🌍 Live Weather Data
+
+        </div>
+
+        <div class="footer-card">
+
+            🚜 Smart Farming Support
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+{% endblock %}

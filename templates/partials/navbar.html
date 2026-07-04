@@ -1,0 +1,127 @@
+<nav class="navbar">
+
+    <!-- =========================
+            LEFT
+    ========================== -->
+
+    <div class="nav-left">
+
+        <button id="menu-btn" class="menu-btn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+        <div class="brand">
+
+            <div class="brand-logo">
+
+                🌿
+
+            </div>
+
+            <div class="brand-info">
+
+                <h2>AgriMitra AI</h2>
+
+                <p>Smart Farming Dashboard</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            RIGHT
+    ========================== -->
+
+    <div class="nav-right">
+
+        <!-- Time -->
+
+        <div class="time-card">
+
+            <span class="material-symbols-rounded">
+
+                schedule
+
+            </span>
+
+            <div>
+
+                <small>Current Time</small>
+
+                <h4 id="clock">--:--</h4>
+
+            </div>
+
+        </div>
+
+        <!-- Notification -->
+
+        <button class="notification">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span class="notify-dot"></span>
+
+        </button>
+
+        <!-- User -->
+
+        <div class="nav-user">
+
+            {% if photo %}
+
+                <img
+                    src="{{ photo }}"
+                    alt="Profile"
+                    class="nav-profile">
+
+            {% else %}
+
+                <img
+                    src="{{ url_for('static', filename='images/default-profile.png') }}"
+                    alt="Profile"
+                    class="nav-profile">
+
+            {% endif %}
+
+           
+
+        </div>
+
+    </div>
+
+</nav>
+
+<script>
+
+function updateClock(){
+
+    const now=new Date();
+
+    let h=now.getHours();
+
+    let m=now.getMinutes();
+
+    const ampm=h>=12?"PM":"AM";
+
+    h=h%12;
+
+    if(h===0) h=12;
+
+    if(m<10) m="0"+m;
+
+    document.getElementById("clock").innerHTML=
+
+        h+":"+m+" "+ampm;
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+</script>

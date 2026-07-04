@@ -1,0 +1,452 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+
+
+{% block css %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <!-- =========================
+           COVER SECTION
+    ========================== -->
+
+    <section class="profile-cover">
+
+        <div class="cover-overlay">
+
+            <button class="cover-edit">
+
+                <i class="fa-solid fa-camera"></i>
+
+                Change Cover
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+           PROFILE CARD
+    ========================== -->
+
+    <section class="profile-card">
+
+        <!-- LEFT -->
+
+        <div class="profile-left">
+
+            <div class="profile-photo-section">
+
+                {% if photo %}
+
+                <img src="{{ photo }}" class="profile-photo">
+
+                {% else %}
+
+                <img src="{{ url_for('static',
+                filename='images/default-profile.png') }}"
+                class="profile-photo">
+                {% endif %}
+                <form
+                    action="/upload-profile-photo"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+
+                    <input
+                        type="file"
+                        name="photo"
+                        accept="image/*"
+                        required
+                    >
+
+                    <button type="submit" class="upload-btn">
+
+                        <i class="fa-solid fa-upload"></i>
+
+                        Upload Photo
+
+                    </button>
+
+                </form>
+                <form
+                    action="/upload-profile-photo"
+                    method="POST"
+                    enctype="multipart/form-data">
+
+                    <input
+                        type="file"
+                        id="photo"
+                        name="photo"
+                        accept="image/*"
+                        hidden
+                        onchange="this.form.submit()">
+
+                    <label
+                        for="photo"
+                        class="upload-btn">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        Change Photo
+
+                    </label>
+
+                </form>
+
+                <a
+                    href="/remove-profile-photo"
+                    class="remove-photo">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Remove Photo
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="profile-right">
+
+            <div class="profile-heading">
+
+                <h1>
+
+                    {{ user.fullname }}
+
+                </h1>
+
+                <span class="badge">
+
+                    🌾 Smart Farmer
+
+                </span>
+
+            </div>
+
+            <p class="profile-email">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                {{ user.email }}
+
+            </p>
+
+            
+
+            <!-- QUICK INFO -->
+
+            <div class="quick-info">
+
+                <div class="quick-box">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <div>
+
+                        <small>Mobile</small>
+
+                        <h4>
+
+                            {{ user.mobile }}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+                <div class="quick-box">
+
+                    <i class="fa-solid fa-language"></i>
+
+                    <div>
+
+                        <small>Language</small>
+
+                        <h4>
+
+                            {{ user.language or "English" }}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+                <div class="quick-box">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <div>
+
+                        <small>Location</small>
+
+                        <h4>
+
+                            {{ user.location or "Not Added" }}
+
+                        </h4>
+
+                    </div>
+
+                </div>
+
+                <div class="quick-box">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <div>
+
+                        <small>Member Since</small>
+
+                        <h4>
+
+                            July 2026
+
+                        </h4>
+
+                    </div>
+                    
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    
+
+
+
+
+<!-- =========================
+      ACCOUNT SETTINGS
+========================= -->
+
+<section class="info-card">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-gear"></i>
+
+            Account Settings
+
+        </h2>
+
+    </div>
+
+    <div class="settings-grid">
+
+        
+        
+            
+        
+
+        <div class="setting-item">
+
+            <div>
+
+                <h4>
+
+                    🔒 Change Password
+
+                </h4>
+
+                <p>
+
+                    Secure your account
+
+                </p>
+
+            </div>
+
+            <a href="/change-password" class="white-btn">
+
+                Update
+
+            </a>
+
+        </div>
+        <div class="setting-item">
+
+    <div>
+
+        <h4>
+            👤 Edit Profile
+        </h4>
+
+        <p>
+            Update your personal and farm information
+        </p>
+
+    </div>
+
+    <a href="/edit-profile" class="green-btn">
+
+        Edit
+
+    </a>
+
+</div>
+        <div class="setting-item">
+
+            <div>
+
+                <h4>
+
+                    📷 Profile Photo
+
+                </h4>
+
+                <p>
+
+                    Upload or replace your photo
+
+                </p>
+
+            </div>
+
+            <label for="photo" class="green-btn">
+
+                Upload
+
+            </label>
+
+        </div>
+
+     <div class="setting-item">
+
+    <div>
+
+        <h4>
+            📄 Download Profile
+        </h4>
+
+        <p>
+            Download your profile as PDF
+        </p>
+
+    </div>
+
+    <a href="/download-profile" class="green-btn">
+
+        Download
+
+    </a>
+
+</div>
+
+        
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+      DANGER ZONE
+========================= -->
+
+<section class="danger-card">
+
+    <div class="danger-header">
+
+        <h2>
+
+            <i class="fa-solid fa-triangle-exclamation"></i>
+
+            Danger Zone
+
+        </h2>
+
+        <p>
+
+            These actions are permanent. Please proceed carefully.
+
+        </p>
+
+    </div>
+
+    <div class="danger-buttons">
+
+        <a href="/logout" class="logout-btn">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+        <form
+            action="/delete-account"
+            method="POST"
+            onsubmit="return confirmDelete();">
+
+            <button
+                type="submit"
+                class="delete-btn">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Delete Account
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- =========================
+      FOOTER
+========================= -->
+
+<footer class="profile-footer">
+
+    <p>
+
+        🌿 AgriMitra AI • Smart Farming Platform
+
+    </p>
+
+    <small>
+
+        Version 1.0 • Developed with ❤️ for Farmers
+
+    </small>
+
+</footer>
+
+</div>
+<script>
+
+function confirmDelete(){
+
+    return confirm(
+        "⚠️ Are you sure?\n\nThis will permanently delete your account and all your data.\n\nThis action cannot be undone."
+    );
+
+}
+
+</script>
+{% endblock %}

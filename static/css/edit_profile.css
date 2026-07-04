@@ -1,0 +1,1763 @@
+/*======================================================
+        AGRIMITRA AI
+        EDIT PROFILE
+        PART 1
+======================================================*/
+
+/*==========================
+BODY
+==========================*/
+
+.edit-page{
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding:40px;
+
+    background:linear-gradient(
+        135deg,
+        #f3fdf6 0%,
+        #eef8ff 50%,
+        #ffffff 100%
+    );
+
+}
+
+/*==========================
+MAIN CARD
+==========================*/
+
+.edit-card{
+
+    width:100%;
+
+    max-width:1400px;
+
+    margin:auto;
+
+    background:#ffffff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+        0 25px 60px rgba(15,23,42,.08);
+
+    animation:fadeUp .8s ease;
+
+}
+
+/*==========================
+HEADER
+==========================*/
+
+.edit-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:25px;
+
+    padding:40px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #22c55e,
+            #15803d
+        );
+
+    color:white;
+
+}
+
+/*==========================
+TITLE
+==========================*/
+
+.edit-header h1{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.edit-header p{
+
+    margin-top:10px;
+
+    font-size:17px;
+
+    opacity:.92;
+
+}
+
+/*==========================
+BACK BUTTON
+==========================*/
+
+.back-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    text-decoration:none;
+
+    color:#15803d;
+
+    background:white;
+
+    padding:14px 24px;
+
+    border-radius:16px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.back-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+
+    0 12px 28px rgba(0,0,0,.18);
+
+}
+
+/*==========================
+FORM
+==========================*/
+
+.edit-card form{
+
+    padding:45px;
+
+}
+
+/*==========================
+SECTION TITLE
+==========================*/
+
+.section-title{
+
+    margin-top:25px;
+
+    margin-bottom:25px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#14532d;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.section-title i{
+
+    width:52px;
+
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        #22c55e,
+        #15803d
+    );
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+/*==========================
+ANIMATION
+==========================*/
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+/*======================================================
+        PART 2
+        Form Grid + Inputs
+======================================================*/
+
+/*==========================
+FORM GRID
+==========================*/
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:28px;
+
+    margin-bottom:35px;
+
+}
+
+/*==========================
+FORM GROUP
+==========================*/
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    position:relative;
+
+}
+
+.full-width{
+
+    width:100%;
+
+}
+
+/*==========================
+LABEL
+==========================*/
+
+.form-group label{
+
+    margin-bottom:10px;
+
+    color:#334155;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+}
+
+/*==========================
+INPUT
+==========================*/
+
+.form-group input{
+
+    width:100%;
+
+    height:58px;
+
+    border:2px solid #e5e7eb;
+
+    border-radius:18px;
+
+    padding:0 18px;
+
+    font-size:16px;
+
+    color:#0f172a;
+
+    background:#fafcff;
+
+    transition:.35s;
+
+    outline:none;
+
+}
+
+/*==========================
+INPUT HOVER
+==========================*/
+
+.form-group input:hover{
+
+    border-color:#86efac;
+
+}
+
+/*==========================
+INPUT FOCUS
+==========================*/
+
+.form-group input:focus{
+
+    border-color:#22c55e;
+
+    background:white;
+
+    box-shadow:
+
+    0 0 0 5px rgba(34,197,94,.12);
+
+}
+
+/*==========================
+READONLY
+==========================*/
+
+.form-group input[readonly]{
+
+    background:#f1f5f9;
+
+    cursor:not-allowed;
+
+    color:#64748b;
+
+}
+
+/*==========================
+PLACEHOLDER
+==========================*/
+
+.form-group input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/*==========================
+INPUT ICON EFFECT
+==========================*/
+
+.form-group input:focus{
+
+    transform:translateY(-2px);
+
+}
+
+/*==========================
+FORM CARD EFFECT
+==========================*/
+
+.form-group{
+
+    transition:.35s;
+
+}
+
+.form-group:hover{
+
+    transform:translateY(-3px);
+
+}
+/*======================================================
+        PART 3
+        Select + Textarea
+======================================================*/
+
+/*==========================
+SELECT
+==========================*/
+
+.form-group select{
+
+    width:100%;
+
+    height:58px;
+
+    padding:0 18px;
+
+    border:2px solid #e5e7eb;
+
+    border-radius:18px;
+
+    background:#fafcff;
+
+    font-size:16px;
+
+    color:#0f172a;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.form-group select:hover{
+
+    border-color:#86efac;
+
+}
+
+.form-group select:focus{
+
+    background:white;
+
+    border-color:#22c55e;
+
+    box-shadow:
+
+    0 0 0 5px rgba(34,197,94,.12);
+
+}
+
+/*==========================
+TEXTAREA
+==========================*/
+
+.form-group textarea{
+
+    width:100%;
+
+    min-height:170px;
+
+    padding:18px;
+
+    border:2px solid #e5e7eb;
+
+    border-radius:20px;
+
+    background:#fafcff;
+
+    font-size:16px;
+
+    color:#0f172a;
+
+    resize:vertical;
+
+    outline:none;
+
+    transition:.35s;
+
+    line-height:1.8;
+
+}
+
+.form-group textarea:hover{
+
+    border-color:#86efac;
+
+}
+
+.form-group textarea:focus{
+
+    background:white;
+
+    border-color:#22c55e;
+
+    box-shadow:
+
+    0 0 0 5px rgba(34,197,94,.12);
+
+}
+
+/*==========================
+PLACEHOLDER
+==========================*/
+
+.form-group textarea::placeholder{
+
+    color:#94a3b8;
+
+}
+
+/*==========================
+INPUT + SELECT + TEXTAREA
+==========================*/
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    font-family:"Poppins",sans-serif;
+
+}
+
+/*==========================
+AUTO FILL FIX
+==========================*/
+
+input:-webkit-autofill{
+
+    -webkit-box-shadow:0 0 0px 1000px #ffffff inset !important;
+
+}
+
+/*==========================
+FIELD ANIMATION
+==========================*/
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    transform:translateY(-2px);
+
+}
+
+/*==========================
+SECTION SPACING
+==========================*/
+
+.section-title{
+
+    margin-top:45px;
+
+}
+/*======================================================
+        PART 4
+        Buttons
+======================================================*/
+
+/*==========================
+BUTTON ROW
+==========================*/
+
+.button-row{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-top:45px;
+
+    flex-wrap:wrap;
+
+}
+
+/*==========================
+COMMON BUTTON
+==========================*/
+
+.save-btn,
+.cancel-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    min-width:200px;
+
+    height:60px;
+
+    padding:0 28px;
+
+    border-radius:18px;
+
+    text-decoration:none;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+/*==========================
+SAVE BUTTON
+==========================*/
+
+.save-btn{
+
+    border:none;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #22c55e,
+        #15803d
+    );
+
+    box-shadow:
+
+        0 15px 35px rgba(34,197,94,.28);
+
+}
+
+.save-btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 22px 45px rgba(34,197,94,.40);
+
+}
+
+/*==========================
+CANCEL BUTTON
+==========================*/
+
+.cancel-btn{
+
+    background:white;
+
+    border:2px solid #dbe4ea;
+
+    color:#334155;
+
+}
+
+.cancel-btn:hover{
+
+    border-color:#ef4444;
+
+    color:#ef4444;
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+        0 18px 35px rgba(239,68,68,.12);
+
+}
+
+/*==========================
+CLICK EFFECT
+==========================*/
+
+.save-btn:active,
+.cancel-btn:active{
+
+    transform:scale(.96);
+
+}
+
+/*==========================
+ICONS
+==========================*/
+
+.save-btn i,
+.cancel-btn i{
+
+    font-size:18px;
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:768px){
+
+    .button-row{
+
+        flex-direction:column-reverse;
+
+        align-items:stretch;
+
+    }
+
+    .save-btn,
+    .cancel-btn{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+}
+/*======================================================
+        PART 5
+        Premium Cards + Glass Effects
+======================================================*/
+
+/*==========================
+CARD HOVER
+==========================*/
+
+.edit-card{
+
+    transition:.45s ease;
+
+}
+
+.edit-card:hover{
+
+    box-shadow:
+
+        0 35px 80px rgba(15,23,42,.12);
+
+}
+
+/*==========================
+GLASS EFFECT
+==========================*/
+
+.edit-card{
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+}
+
+/*==========================
+SECTION CARD
+==========================*/
+
+.section-box{
+
+    background:#ffffff;
+
+    border:1px solid #edf2f7;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    margin-bottom:35px;
+
+    transition:.35s;
+
+}
+
+.section-box:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+
+        0 20px 45px rgba(15,23,42,.08);
+
+}
+
+/*==========================
+SECTION TITLE
+==========================*/
+
+.section-title{
+
+    position:relative;
+
+}
+
+.section-title::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-10px;
+
+    left:66px;
+
+    width:90px;
+
+    height:4px;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+
+        90deg,
+
+        #22c55e,
+
+        #16a34a
+
+    );
+
+}
+
+/*==========================
+INPUT SHADOW
+==========================*/
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    box-shadow:
+
+        inset 0 1px 2px rgba(0,0,0,.04);
+
+}
+
+/*==========================
+FOCUS GLOW
+==========================*/
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+    box-shadow:
+
+        0 0 0 5px rgba(34,197,94,.12),
+
+        0 15px 30px rgba(34,197,94,.08);
+
+}
+
+/*==========================
+FADE ANIMATION
+==========================*/
+
+@keyframes fadeSlide{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.form-group{
+
+    animation:fadeSlide .6s ease;
+
+}
+
+/*==========================
+STAGGER EFFECT
+==========================*/
+
+.form-group:nth-child(1){animation-delay:.05s;}
+.form-group:nth-child(2){animation-delay:.10s;}
+.form-group:nth-child(3){animation-delay:.15s;}
+.form-group:nth-child(4){animation-delay:.20s;}
+.form-group:nth-child(5){animation-delay:.25s;}
+.form-group:nth-child(6){animation-delay:.30s;}
+.form-group:nth-child(7){animation-delay:.35s;}
+.form-group:nth-child(8){animation-delay:.40s;}
+
+/*==========================
+ICON ANIMATION
+==========================*/
+
+.section-title i{
+
+    transition:.35s;
+
+}
+
+.section-title:hover i{
+
+    transform:rotate(10deg) scale(1.08);
+
+}
+
+/*==========================
+BUTTON GLOW
+==========================*/
+
+.save-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.save-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.35),
+
+        transparent
+
+    );
+
+    transition:.7s;
+
+}
+
+.save-btn:hover::before{
+
+    left:120%;
+
+}
+
+/*==========================
+BACKGROUND DECORATION
+==========================*/
+
+.edit-page::before{
+
+    content:"";
+
+    position:fixed;
+
+    width:420px;
+
+    height:420px;
+
+    border-radius:50%;
+
+    background:rgba(34,197,94,.05);
+
+    top:-180px;
+
+    right:-150px;
+
+    z-index:0;
+
+}
+
+.edit-page::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    background:rgba(59,130,246,.04);
+
+    bottom:-150px;
+
+    left:-120px;
+
+    z-index:0;
+
+}
+
+.edit-card{
+
+    position:relative;
+
+    z-index:2;
+
+}
+/*======================================================
+        PART 6
+        Premium UX + Responsive Improvements
+======================================================*/
+
+/*==========================
+FORM GROUP ANIMATION
+==========================*/
+
+.form-group{
+
+    position:relative;
+
+    transition:.35s;
+
+}
+
+.form-group:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/*==========================
+LABEL EFFECT
+==========================*/
+
+.form-group label{
+
+    transition:.3s;
+
+}
+
+.form-group:hover label{
+
+    color:#15803d;
+
+}
+
+/*==========================
+INPUT TRANSITIONS
+==========================*/
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+    transition:
+
+        border-color .35s,
+
+        box-shadow .35s,
+
+        background .35s,
+
+        transform .35s;
+
+}
+
+/*==========================
+TEXTAREA
+==========================*/
+
+.form-group textarea{
+
+    min-height:180px;
+
+    max-height:350px;
+
+}
+
+/*==========================
+SELECT ARROW
+==========================*/
+
+.form-group select{
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    -moz-appearance:none;
+
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%2315803d' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+
+    background-repeat:no-repeat;
+
+    background-position:right 18px center;
+
+    padding-right:50px;
+
+}
+
+/*==========================
+DISABLED INPUT
+==========================*/
+
+input:disabled,
+select:disabled,
+textarea:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+}
+
+/*==========================
+SECTION DIVIDER
+==========================*/
+
+.section-title{
+
+    padding-bottom:12px;
+
+    border-bottom:1px solid #eef2f7;
+
+}
+
+/*==========================
+BUTTON ICON
+==========================*/
+
+.save-btn i,
+.cancel-btn i{
+
+    transition:.35s;
+
+}
+
+.save-btn:hover i{
+
+    transform:translateX(3px);
+
+}
+
+.cancel-btn:hover i{
+
+    transform:translateX(-3px);
+
+}
+
+/*==========================
+TABLET
+==========================*/
+
+@media(max-width:1024px){
+
+    .edit-page{
+
+        padding:25px;
+
+    }
+
+    .edit-header{
+
+        padding:30px;
+
+    }
+
+    .edit-card form{
+
+        padding:35px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+/*==========================
+MOBILE
+==========================*/
+
+@media(max-width:768px){
+
+    .edit-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .edit-header h1{
+
+        font-size:30px;
+
+    }
+
+    .edit-header p{
+
+        font-size:15px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .edit-card form{
+
+        padding:25px;
+
+    }
+
+}
+
+/*==========================
+SMALL MOBILE
+==========================*/
+
+@media(max-width:480px){
+
+    .edit-page{
+
+        padding:12px;
+
+    }
+
+    .edit-header{
+
+        padding:22px;
+
+    }
+
+    .edit-header h1{
+
+        font-size:24px;
+
+    }
+
+    .section-title{
+
+        font-size:20px;
+
+    }
+
+    .section-title i{
+
+        width:44px;
+
+        height:44px;
+
+        font-size:18px;
+
+    }
+
+    .form-group input,
+    .form-group select{
+
+        height:52px;
+
+        font-size:15px;
+
+    }
+
+    .form-group textarea{
+
+        font-size:15px;
+
+    }
+
+}
+/*======================================================
+        PART 7
+        Premium Effects + Polish
+======================================================*/
+
+/*==========================
+SMOOTH SCROLL
+==========================*/
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+/*==========================
+CUSTOM SCROLLBAR
+==========================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef7f0;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+
+        #22c55e,
+
+        #15803d
+
+    );
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#166534;
+
+}
+
+/*==========================
+TEXT SELECTION
+==========================*/
+
+::selection{
+
+    background:#22c55e;
+
+    color:white;
+
+}
+
+/*==========================
+INPUT PLACEHOLDER
+==========================*/
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:#94a3b8;
+
+    transition:.35s;
+
+}
+
+.form-group input:focus::placeholder,
+.form-group textarea:focus::placeholder{
+
+    opacity:.5;
+
+}
+
+/*==========================
+SAVE BUTTON SHADOW
+==========================*/
+
+.save-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.save-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.25),
+
+        transparent
+
+    );
+
+    transform:translateX(-120%);
+
+    transition:.8s;
+
+}
+
+.save-btn:hover::after{
+
+    transform:translateX(120%);
+
+}
+
+/*==========================
+CARD GLOW
+==========================*/
+
+.edit-card:hover{
+
+    box-shadow:
+
+        0 35px 80px rgba(34,197,94,.10);
+
+}
+
+/*==========================
+SECTION HOVER
+==========================*/
+
+.section-title{
+
+    transition:.35s;
+
+}
+
+.section-title:hover{
+
+    transform:translateX(5px);
+
+}
+
+/*==========================
+BUTTON TRANSITIONS
+==========================*/
+
+.save-btn,
+.cancel-btn,
+.back-btn{
+
+    transition:
+
+        transform .35s,
+
+        box-shadow .35s,
+
+        background .35s;
+
+}
+
+/*==========================
+INPUT VALID
+==========================*/
+
+.form-group input:valid{
+
+    border-color:#bbf7d0;
+
+}
+
+/*==========================
+TEXTAREA
+==========================*/
+
+textarea{
+
+    scrollbar-width:thin;
+
+}
+
+/*==========================
+BACKGROUND SHAPES
+==========================*/
+
+.edit-page{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.edit-page .shape1{
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    background:rgba(34,197,94,.05);
+
+    top:-120px;
+
+    left:-120px;
+
+}
+
+.edit-page .shape2{
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:rgba(59,130,246,.05);
+
+    bottom:-100px;
+
+    right:-100px;
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:600px){
+
+    .back-btn{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+/*======================================================
+        PART 8
+        Final Production Polish
+======================================================*/
+
+/*==========================
+UNIVERSAL TRANSITION
+==========================*/
+
+*{
+
+    transition:
+
+        color .25s ease,
+
+        background-color .25s ease,
+
+        border-color .25s ease,
+
+        box-shadow .25s ease;
+
+}
+
+/*==========================
+FOCUS ACCESSIBILITY
+==========================*/
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus{
+
+    outline:none;
+
+}
+
+/*==========================
+BUTTON DISABLED
+==========================*/
+
+.save-btn:disabled{
+
+    opacity:.65;
+
+    cursor:not-allowed;
+
+    box-shadow:none;
+
+    transform:none;
+
+}
+
+/*==========================
+LOADING STATE
+==========================*/
+
+.save-btn.loading{
+
+    pointer-events:none;
+
+    opacity:.85;
+
+}
+
+.save-btn.loading i{
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*==========================
+HOVER LIFT
+==========================*/
+
+.form-group:hover input,
+.form-group:hover select,
+.form-group:hover textarea{
+
+    border-color:#22c55e;
+
+}
+
+/*==========================
+CARD BORDER
+==========================*/
+
+.edit-card{
+
+    border:1px solid rgba(255,255,255,.35);
+
+}
+
+/*==========================
+HEADER SHADOW
+==========================*/
+
+.edit-header{
+
+    position:relative;
+
+}
+
+.edit-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:0;
+
+    width:100%;
+
+    height:1px;
+
+    background:rgba(255,255,255,.20);
+
+}
+
+/*==========================
+SMALL ANIMATIONS
+==========================*/
+
+.save-btn:hover{
+
+    letter-spacing:.4px;
+
+}
+
+.cancel-btn:hover{
+
+    letter-spacing:.4px;
+
+}
+
+.back-btn:hover{
+
+    letter-spacing:.4px;
+
+}
+
+/*==========================
+REDUCE MOTION SUPPORT
+==========================*/
+
+@media (prefers-reduced-motion: reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+/*==========================
+LARGE DESKTOP
+==========================*/
+
+@media(min-width:1600px){
+
+    .edit-card{
+
+        max-width:1500px;
+
+    }
+
+}
+
+/*==========================
+PRINT
+==========================*/
+
+@media print{
+
+    .back-btn,
+    .save-btn,
+    .cancel-btn{
+
+        display:none;
+
+    }
+
+    .edit-page{
+
+        background:white;
+
+    }
+
+    .edit-card{
+
+        box-shadow:none;
+
+        border:none;
+
+    }
+
+}
+
+/*==========================
+END
+==========================*/

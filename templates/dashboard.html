@@ -1,0 +1,543 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <div class="hero-badge">
+                🌿 AgriMitra AI
+            </div>
+
+            <h1 id="greeting" class="hero-title">
+                Good Morning,
+                <span class="username">{{ session.get('fullname','Farmer') }}</span>
+            </h1>
+
+            <div class="hero-line"></div>
+
+            <div class="hero-time">
+
+                <i class="fa-regular fa-clock"></i>
+
+                <span id="liveTime"></span>
+
+            </div>
+
+            <p id="heroQuote" class="hero-text">
+
+                Welcome back!
+                Let's make farming smarter today.
+
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="hero-circle">
+
+                <img src="{{ url_for('static', filename='images/farm-circle.png') }}"
+                     alt="Farm">
+
+            </div>
+
+        </div>
+
+    </section>
+<section class="farm-section">
+
+    <div class="farm-left">
+
+        <div class="section-title">
+
+            <div class="title-icon">
+                🌿
+            </div>
+
+            <div>
+
+                <h2>Farm Information</h2>
+
+                <p>
+                    Please provide your farm details to get personalized insights and AI recommendations.
+                </p>
+
+            </div>
+
+        </div>
+
+        <form action="/save-farm" method="POST" class="farm-form">
+
+            <!-- Crop -->
+
+            <div class="input-card">
+
+                <div class="input-info">
+
+                    <div class="icon crop-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <h4>Crop Type</h4>
+
+                        <small>Select the crop you are growing</small>
+
+                    </div>
+
+                </div>
+
+                <select id="cropSelect"
+        name="crop_type"
+        onchange="toggleManual('cropSelect','cropInput')">
+
+    <option value="">Select Crop</option>
+
+    <option value="Wheat">Wheat</option>
+    <option value="Rice">Rice</option>
+    <option value="Maize">Maize</option>
+    <option value="Sugarcane">Sugarcane</option>
+    <option value="Cotton">Cotton</option>
+    <option value="Soybean">Soybean</option>
+
+    <option value="manual">✍ Enter Manually</option>
+
+</select>
+
+<input
+    type="text"
+    id="cropInput"
+    name="crop_manual"
+    class="manual-input"
+    placeholder="Enter Crop Name">
+            </div>
+
+            <!-- Soil -->
+
+
+<div class="input-card">
+
+    <div class="input-info">
+
+        <div class="icon soil-icon">
+            🌱
+        </div>
+
+        <div>
+
+            <h4>Soil Type</h4>
+
+            <small>Select your soil type</small>
+
+        </div>
+
+    </div>
+
+    <select
+        id="soilSelect"
+        name="soil_type"
+        onchange="toggleManual('soilSelect','soilInput')">
+
+        <option value="">Select Soil Type</option>
+
+        <option value="Loamy">Loamy</option>
+
+        <option value="Clay">Clay</option>
+
+        <option value="Sandy">Sandy</option>
+
+        <option value="Black">Black</option>
+
+        <option value="Red">Red</option>
+
+        <option value="Alluvial">Alluvial</option>
+
+        <option value="Laterite">Laterite</option>
+
+        <option value="manual">✍ Enter Manually</option>
+
+    </select>
+
+    <input
+        type="text"
+        id="soilInput"
+        name="soil_manual"
+        class="manual-input"
+        placeholder="Enter Soil Type"
+        style="display:none; margin-top:12px;">
+
+</div>
+            <!-- Area -->
+
+            <div class="input-card">
+
+                <div class="input-info">
+
+                    <div class="icon area-icon">
+                        📏
+                    </div>
+
+                    <div>
+
+                        <h4>Farm Area (Acres)</h4>
+
+                        <small>Enter the total area</small>
+
+                    </div>
+
+                </div>
+
+                <input
+                    type="number"
+                    step="0.1"
+                    placeholder="Example : 2.5"
+                    name="farm_area">
+
+            </div>
+
+            <!-- Irrigation -->
+
+            <div class="input-card">
+
+                <div class="input-info">
+
+                    <div class="icon water-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <h4>Irrigation Method</h4>
+
+                        <small>Select irrigation method</small>
+
+                    </div>
+
+                </div>
+
+                <select
+id="irrigationSelect"
+name="irrigation_type"
+onchange="toggleManual('irrigationSelect','irrigationInput')">
+
+    <option value="">Select Irrigation</option>
+
+    <option value="Drip">Drip</option>
+
+    <option value="Sprinkler">Sprinkler</option>
+
+    <option value="Flood">Flood</option>
+
+    <option value="manual">✍ Enter Manually</option>
+
+</select>
+
+<input
+id="irrigationInput"
+name="irrigation_manual"
+class="manual-input"
+type="text"
+placeholder="Enter Irrigation Method">
+            </div>
+
+            <button class="save-btn">
+
+                Save Farm Details
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="farm-right">
+
+        <div class="info-card">
+
+            <h3>
+
+                🌱 Why provide farm details?
+
+            </h3>
+
+            <div class="benefit">
+
+                ✅ AI Recommendations
+
+                <p>Personalized crop suggestions.</p>
+
+            </div>
+
+            <div class="benefit">
+
+                ✅ Better Insights
+
+                <p>Understand soil and crop health.</p>
+
+            </div>
+
+            <div class="benefit">
+
+                ✅ Smart Decisions
+
+                <p>AI-driven farming recommendations.</p>
+
+            </div>
+
+            <div class="benefit">
+
+                ✅ Higher Productivity
+
+                <p>Increase yield and reduce costs.</p>
+
+            </div>
+
+            <img src="{{ url_for('static', filename='images/farm-circle.png') }}">
+
+        </div>
+
+    </div>
+
+</section>
+<section class="bottom-grid">
+
+    <!-- Weather -->
+
+    <div class="bottom-card">
+
+        <div class="card-title">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <h3>Weather Update</h3>
+        </div>
+        <div class="weather-icon">
+
+           <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png"
+         alt="{{ weather.condition }}">
+
+        </div>
+        <h1>{{ weather.temperature }}°C</h1>
+
+<p>{{ weather.condition }}</p>
+
+<small>{{ weather.description }}</small>
+        
+
+            <div class="weather-grid">
+
+    <div>
+
+        <span>Humidity</span>
+
+        <strong>{{ weather.humidity }}%</strong>
+
+    </div>
+
+    <div>
+
+        <span>Wind</span>
+
+        <strong>{{ weather.wind }} km/h</strong>
+
+    </div>
+
+    <div>
+
+        <span>Condition</span>
+
+        <strong>{{ weather.condition }}</strong>
+
+    </div>
+
+</div>
+        
+
+    </div>
+
+    <!-- ==========================
+AI CROP RECOMMENDATION
+========================== -->
+
+<div class="bottom-card ai-card">
+
+    <div class="card-title">
+
+        <i class="fa-solid fa-brain"></i>
+
+        <h3>AI Crop Recommendation</h3>
+
+    </div>
+
+    <div class="ai-status">
+
+        <h2>
+
+            {{ recommendation.title }}
+
+        </h2>
+
+        <span class="match-pill">
+
+            {{ recommendation.badge }}
+
+        </span>
+
+    </div>
+
+    <div class="ai-score">
+
+        <div class="score-box">
+
+            <small>AI Prediction</small>
+
+            <strong>
+
+                {{ prediction }}
+
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div class="recommendation-list">
+
+        {% for tip in recommendation.tips %}
+
+        <div class="tip-item">
+
+            {{ tip }}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="ai-footer">
+
+        <i class="fa-solid fa-robot"></i>
+
+        Powered by AgriMitra AI • Random Forest Model
+
+    </div>
+
+</div>
+    
+<script>
+
+function toggleManual(selectId,inputId){
+
+    const select=document.getElementById(selectId);
+
+    const input=document.getElementById(inputId);
+
+    if(select.value==="manual"){
+
+        input.style.display="block";
+
+    }
+
+    else{
+
+        input.style.display="none";
+
+        input.value="";
+
+    }
+
+}
+
+window.onload=function(){
+
+    toggleManual("cropSelect","cropInput");
+
+    toggleManual("soilSelect","soilInput");
+
+    toggleManual("irrigationSelect","irrigationInput");
+
+}
+
+</script>
+<script>
+
+function updateGreeting(){
+
+    const hour=new Date().getHours();
+
+    let greeting="";
+    let icon="";
+    let quote="";
+
+    if(hour>=5 && hour<12){
+
+        greeting="Good Morning";
+        icon="🌅";
+        quote="A fresh day begins. Monitor your farm and make every harvest count.";
+
+    }
+
+    else if(hour>=12 && hour<17){
+
+        greeting="Good Afternoon";
+        icon="☀️";
+        quote="Keep track of your crops and optimize irrigation for better yield.";
+
+    }
+
+    else if(hour>=17 && hour<20){
+
+        greeting="Good Evening";
+        icon="🌇";
+        quote="Review today's farm insights and prepare for tomorrow's success.";
+
+    }
+
+    else{
+
+        greeting="Good Night";
+        icon="🌙";
+        quote="Your farm data is safe with AgriMitra AI. Rest well for a productive tomorrow.";
+
+    }
+
+    document.getElementById("greeting").innerHTML=
+    `${icon} ${greeting}, <span class="username">{{ name }}</span>`;
+
+    document.getElementById("heroQuote").innerHTML=quote;
+
+}
+
+function updateLiveTime(){
+
+    document.getElementById("liveTime").innerHTML=
+    new Date().toLocaleTimeString([],{
+
+        hour:"2-digit",
+        minute:"2-digit"
+
+    });
+
+}
+
+document.addEventListener("DOMContentLoaded",function(){
+
+    updateGreeting();
+
+    updateLiveTime();
+
+    setInterval(updateLiveTime,1000);
+
+});
+
+
+</script>
+{% endblock %}

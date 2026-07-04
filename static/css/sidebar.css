@@ -1,0 +1,192 @@
+/* ==========================
+   PREMIUM SIDEBAR
+========================== */
+
+.sidebar{
+
+    position:fixed;
+    top:80px;
+    left:-280px;          /* Hidden by default */
+
+    width:280px;
+    height:calc(100vh - 80px);
+
+    background:#fff;
+
+    border-right:1px solid #E5E7EB;
+    box-shadow:4px 0 25px rgba(0,0,0,.08);
+
+    overflow-y:auto;
+
+    transition:.35s ease;
+
+    z-index:998;
+
+}
+
+/* Open Sidebar */
+
+.sidebar.active{
+
+    left:0;
+
+}
+
+/* HEADER */
+
+.sidebar-header{
+
+    padding:25px;
+
+    text-align:center;
+
+}
+
+.sidebar-header h2{
+
+    color:#16A34A;
+
+    font-size:22px;
+
+}
+
+/* MENU */
+
+.sidebar ul{
+
+    list-style:none;
+
+    padding:10px;
+
+}
+
+.sidebar ul li{
+
+    margin-bottom:8px;
+
+}
+
+.sidebar ul li a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:14px 18px;
+
+    border-radius:16px;
+
+    color:#475569;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.sidebar ul li a i{
+
+    width:24px;
+
+    font-size:18px;
+
+    text-align:center;
+
+}
+
+/* Hover */
+
+.sidebar ul li a:hover{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+/* Active */
+
+.sidebar ul li a.active{
+
+    background:linear-gradient(135deg,#22C55E,#16A34A);
+
+    color:#ffffff;
+
+    box-shadow:0 8px 20px rgba(34,197,94,.35);
+
+}
+
+.sidebar ul li a.active i{
+
+    color:#ffffff;
+
+}
+
+/* Open Sidebar */
+
+.sidebar.active{
+
+    left:0;
+
+}
+
+/* ==========================
+   COLLAPSED SIDEBAR
+========================== */
+
+.sidebar.collapsed{
+
+    width:90px;
+
+}
+
+.sidebar.collapsed span{
+
+    display:none;
+
+}
+
+.sidebar.collapsed .sidebar-header{
+
+    display:none;
+
+}
+
+.sidebar.collapsed ul li a{
+
+    justify-content:center;
+
+    gap:0;
+
+}
+.sidebar-photo{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid #22c55e;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+}
+
+.sidebar-header{
+
+    text-align:center;
+
+}
+
+.sidebar-header small{
+
+    color:#64748b;
+
+}

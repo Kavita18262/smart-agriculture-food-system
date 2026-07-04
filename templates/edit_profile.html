@@ -1,0 +1,373 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block css %}
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/edit_profile.css') }}">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="edit-page">
+
+    <div class="edit-card">
+
+        <div class="edit-header">
+
+            <div>
+
+                <h1>
+
+                    <i class="fa-solid fa-user-pen"></i>
+
+                    Edit Profile
+
+                </h1>
+
+                <p>
+
+                    Keep your personal and farm information up to date.
+
+                </p>
+
+            </div>
+
+            <a href="/profile" class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back
+
+            </a>
+
+        </div>
+
+        <form method="POST">
+
+            <!-- ==========================
+                    PERSONAL INFO
+            =========================== -->
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-id-card"></i>
+
+                Personal Information
+
+            </div>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        name="fullname"
+                        value="{{ user.fullname or '' }}"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        value="{{ user.email or '' }}"
+                        readonly>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Mobile Number</label>
+
+                    <input
+                        type="text"
+                        name="mobile"
+                        value="{{ user.mobile or '' }}">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Location</label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        value="{{ user.location or '' }}">
+
+                </div>
+                <div class="form-group">
+
+                    <label>Village</label>
+
+                    <input
+                        type="text"
+                        name="village"
+                        value="{{ user.village or '' }}"
+                        placeholder="Enter your village">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Language</label>
+
+                    <select name="language">
+
+                        <option value="English"
+                        {% if user.language=="English" %}selected{% endif %}>
+                        English
+                        </option>
+
+                        <option value="Hindi"
+                        {% if user.language=="Hindi" %}selected{% endif %}>
+                        Hindi
+                        </option>
+
+                        <option value="Marathi"
+                        {% if user.language=="Marathi" %}selected{% endif %}>
+                        Marathi
+                        </option>
+
+                        <option value="Gujarati"
+                        {% if user.language=="Gujarati" %}selected{% endif %}>
+                        Gujarati
+                        </option>
+
+                        <option value="Punjabi"
+                        {% if user.language=="Punjabi" %}selected{% endif %}>
+                        Punjabi
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+                        <!-- ==========================
+                    FARM INFORMATION
+            =========================== -->
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-seedling"></i>
+
+                Farm Information
+
+            </div>
+
+            <div class="form-grid">
+
+    
+
+                <div class="form-group">
+
+                    <label>🌾 Crop Type</label>
+
+                    <select
+                    id="cropSelect"
+                    name="crop_type"
+                    onchange="toggleManual('cropSelect','cropInput')">
+
+                        <option value="">Select Crop</option>
+
+                        <option value="Wheat" {% if user.crop_type=="Wheat" %}selected{% endif %}>Wheat</option>
+
+                        <option value="Rice" {% if user.crop_type=="Rice" %}selected{% endif %}>Rice</option>
+
+                        <option value="Maize" {% if user.crop_type=="Maize" %}selected{% endif %}>Maize</option>
+
+                        <option value="Sugarcane" {% if user.crop_type=="Sugarcane" %}selected{% endif %}>Sugarcane</option>
+
+                        <option value="Cotton" {% if user.crop_type=="Cotton" %}selected{% endif %}>Cotton</option>
+
+                        <option value="Soybean" {% if user.crop_type=="Soybean" %}selected{% endif %}>Soybean</option>
+
+                        <option value="manual">✍ Enter Manually</option>
+
+                    </select>
+
+                    <input
+                    type="text"
+                    id="cropInput"
+                    name="crop_manual"
+                    class="manual-input"
+                    placeholder="Enter Crop Name">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>🌱 Soil Type</label>
+
+<select
+id="soilSelect"
+name="soil_type"
+onchange="toggleManual('soilSelect','soilInput')">
+
+    <option value="">Select Soil</option>
+
+    <option value="Loamy" {% if user.soil_type=="Loamy" %}selected{% endif %}>Loamy</option>
+
+    <option value="Clay" {% if user.soil_type=="Clay" %}selected{% endif %}>Clay</option>
+
+    <option value="Sandy" {% if user.soil_type=="Sandy" %}selected{% endif %}>Sandy</option>
+
+    <option value="Black" {% if user.soil_type=="Black" %}selected{% endif %}>Black</option>
+
+    <option value="manual">✍ Enter Manually</option>
+
+</select>
+
+<input
+type="text"
+id="soilInput"
+name="soil_manual"
+class="manual-input"
+placeholder="Enter Soil Type">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Farm Area (Acres)</label>
+
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="farm_area"
+                        value="{{ user.farm_area or '' }}">
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>💧 Irrigation Method</label>
+
+<select
+id="irrigationSelect"
+name="irrigation_type"
+onchange="toggleManual('irrigationSelect','irrigationInput')">
+
+    <option value="">Select Irrigation</option>
+
+    <option value="Drip" {% if user.irrigation_type=="Drip" %}selected{% endif %}>Drip</option>
+
+    <option value="Sprinkler" {% if user.irrigation_type=="Sprinkler" %}selected{% endif %}>Sprinkler</option>
+
+    <option value="Flood" {% if user.irrigation_type=="Flood" %}selected{% endif %}>Flood</option>
+
+    <option value="Manual" {% if user.irrigation_type=="Manual" %}selected{% endif %}>Manual</option>
+
+    <option value="manual">✍ Enter Manually</option>
+
+</select>
+
+<input
+type="text"
+id="irrigationInput"
+name="irrigation_manual"
+class="manual-input"
+placeholder="Enter Irrigation Method">
+
+                </div>
+
+            </div>
+
+            <!-- ==========================
+                    ABOUT
+            =========================== -->
+
+            <div class="section-title">
+
+                <i class="fa-solid fa-address-card"></i>
+
+                About Farmer
+
+            </div>
+
+            <div class="form-group full-width">
+
+                <label>About Yourself</label>
+
+                <textarea
+                    rows="6"
+                    name="about"
+                    placeholder="Write something about yourself...">{{ user.about or "" }}</textarea>
+
+            </div>
+
+            <!-- ==========================
+                    BUTTONS
+            =========================== -->
+
+            <div class="button-row">
+
+                <a href="/profile" class="cancel-btn">
+
+                    <i class="fa-solid fa-xmark"></i>
+
+                    Cancel
+
+                </a>
+
+                <button
+                    type="submit"
+                    class="save-btn">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<script>
+
+function toggleManual(selectId,inputId){
+
+    const select=document.getElementById(selectId);
+
+    const input=document.getElementById(inputId);
+
+    if(select.value==="manual"){
+
+        input.style.display="block";
+
+    }else{
+
+        input.style.display="none";
+
+        input.value="";
+
+    }
+
+}
+
+window.onload=function(){
+
+    toggleManual("cropSelect","cropInput");
+
+    toggleManual("soilSelect","soilInput");
+
+    toggleManual("irrigationSelect","irrigationInput");
+
+}
+
+</script>
+{% endblock %}

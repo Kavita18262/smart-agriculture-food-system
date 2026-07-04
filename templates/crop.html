@@ -1,0 +1,225 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+AgriTech Tools
+{% endblock %}
+
+{% block content %}
+
+<div class="dashboard">
+
+    <section class="hero">
+        <div class="hero-left">
+            <span class="welcome-badge">🔧 AgriTech Tools</span>
+            <h1>Modern Agriculture Technology & Rental Services</h1>
+            <p>Search over 100 farm tools, machinery, sensors, drones, and digital systems. View usage guidance and rental contact details in one place.</p>
+        </div>
+        <div class="hero-right hero-summary">
+            <div class="summary-card">
+                <h3>Professional AgriTech Catalog</h3>
+                <p>Use the search field below to find equipment like tractor, hoe, drone, sensor, irrigation and more.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="crop-search-panel">
+        <input id="toolSearch" type="search" placeholder="Search tools e.g. drone, tractor, irrigation" />
+        <div class="category-buttons">
+            <button class="category-button active" data-category="all">All</button>
+            <button class="category-button" data-category="Basic Traditional Farming Tools">Traditional Tools</button>
+            <button class="category-button" data-category="Modern Farm Machinery (Mechanized Tools)">Machinery</button>
+            <button class="category-button" data-category="Irrigation & Water Management Tools">Irrigation</button>
+            <button class="category-button" data-category="Smart Farming / IoT Tools">Smart Farming</button>
+            <button class="category-button" data-category="Drones in Agriculture">Drones</button>
+            <button class="category-button" data-category="Soil & Crop Testing Tools">Soil & Testing</button>
+            <button class="category-button" data-category="Mobile Apps & Digital Tools">Digital Tools</button>
+            <button class="category-button" data-category="Livestock Farming Tools">Livestock</button>
+            <button class="category-button" data-category="Post-harvest Tools">Post-harvest</button>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+            <button id="clearToolSearch" style="background:#475569;padding:10px 14px;border-radius:8px;color:white;border:none;">Clear</button>
+        </div>
+    </section>
+
+    <section class="crop-grid">
+        <div class="crop-card" style="width:100%;">
+            <h3>Tool Search Results</h3>
+            <p>Search and filter by category to see tool descriptions, recommended use, rental contacts, and application details.</p>
+            <div id="toolsCountPanel" style="margin-top:8px;color:#94a3b8;font-size:14px;">Showing <span id="toolsCount">0</span> of <span id="toolsTotal">0</span> tools</div>
+            <div id="toolGrid" class="tool-grid"></div>
+            <div style="margin-top:16px;text-align:center;"><button id="showMoreTools" style="background:#0b1220;color:#e2e8f0;padding:10px 18px;border-radius:10px;border:1px solid #334155;">Show more tools</button></div>
+        </div>
+
+        <div class="crop-card detail-panel" id="toolDetailsPanel">
+            <h3>Tool Details</h3>
+            <div class="detail-empty" id="detailEmpty">
+                <p>Select a tool from the results list to see how to use it, rental contact, and simple application guidance.</p>
+            </div>
+            <div id="detailContent" class="detail-content hidden"></div>
+        </div>
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    const agriTools = [
+        { name: "Plough (manual / tractor-mounted)", category: "Basic Traditional Farming Tools", description: "Essential for primary soil preparation.", use: "Turn and loosen soil before sowing; works with manual labor or tractor linkage.", contact: "+91 98765 43210", rent: "Call/WhatsApp for local rental.", apply: "tel:+919876543210" },
+        { name: "Hoe (kudali)", category: "Basic Traditional Farming Tools", description: "Handheld tool for weeding and soil cultivation.", use: "Use for removing weeds, opening shallow furrows, and mixing compost.", contact: "+91 98765 43211", rent: "Hire for daily use in vegetable patches.", apply: "tel:+919876543211" },
+        { name: "Spade & Shovel", category: "Basic Traditional Farming Tools", description: "Universal digging tools for planting and moving soil.", use: "Use to dig pits, transplant seedlings, and move soil or compost.", contact: "+91 98765 43212", rent: "Short-term rental available from farm supply stores.", apply: "tel:+919876543212" },
+        { name: "Sickle (harvesting tool)", category: "Basic Traditional Farming Tools", description: "Traditional harvester for cereal and fodder crops.", use: "Sweep through standing crop to cut stems near the base.", contact: "+91 98765 43213", rent: "Rent for harvest days from local outlets.", apply: "tel:+919876543213" },
+        { name: "Seed drill (basic seeding tool)", category: "Basic Traditional Farming Tools", description: "Simple seeder for planting uniform rows.", use: "Use to place seeds at even depth and spacing.", contact: "+91 98765 43214", rent: "Seasonal hire for sowing operations.", apply: "tel:+919876543214" },
+        { name: "Sprayers (manual pesticide spraying)", category: "Basic Traditional Farming Tools", description: "Portable sprayers for pesticides and foliar nutrients.", use: "Use to apply crop protection chemicals evenly on leaves.", contact: "+91 98765 43215", rent: "Daily rental available from agricultural stores.", apply: "tel:+919876543215" },
+        { name: "Mahindra Tractor", category: "Modern Farm Machinery (Mechanized Tools)", description: "Popular power unit for multiple farm tasks.", use: "Use for ploughing, tillage, hauling and powering attachments.", contact: "+91 98765 43216", rent: "Available for land preparation and transport.", apply: "tel:+919876543216" },
+        { name: "John Deere Tractor", category: "Modern Farm Machinery (Mechanized Tools)", description: "Trusted tractor brand for reliable mechanization.", use: "Use for cultivation, sowing, and material handling.", contact: "+91 98765 43217", rent: "Hire for medium and large fields.", apply: "tel:+919876543217" },
+        { name: "Kubota Tractor", category: "Modern Farm Machinery (Mechanized Tools)", description: "Compact tractor ideal for small farms and orchards.", use: "Use for cultivation, transport and inter-row work.", contact: "+91 98765 43218", rent: "Rent for precision farming tasks.", apply: "tel:+919876543218" },
+        { name: "Combine Harvester", category: "Modern Farm Machinery (Mechanized Tools)", description: "Harvests and threshes grain in one pass.", use: "Use for wheat, paddy and cereal crops to speed harvest.", contact: "+91 98765 43219", rent: "Perfect for large-scale harvest work.", apply: "tel:+919876543219" },
+        { name: "Rotavator", category: "Modern Farm Machinery (Mechanized Tools)", description: "Prepares seedbed by breaking soil clods.", use: "Use before sowing to create a smooth planting surface.", contact: "+91 98765 43220", rent: "Hire for land preparation.", apply: "tel:+919876543220" },
+        { name: "Power Tiller", category: "Modern Farm Machinery (Mechanized Tools)", description: "Small power unit used for tillage and transport.", use: "Use on smaller farms for ridging, bed preparation and haulage.", contact: "+91 98765 43221", rent: "Rent for compact farm operations.", apply: "tel:+919876543221" },
+        { name: "Transplanter (rice planting machine)", category: "Modern Farm Machinery (Mechanized Tools)", description: "Automates rice seedling transplanting.", use: "Use to plant rice seedlings in uniform rows with less labor.", contact: "+91 98765 43222", rent: "Seasonal rental for rice fields.", apply: "tel:+919876543222" },
+        { name: "Drip Irrigation System", category: "Irrigation & Water Management Tools", description: "Delivers water directly to plant roots.", use: "Use for water-efficient irrigation in orchards and vegetables.", contact: "+91 98765 43223", rent: "Temporary setup rentals available.", apply: "tel:+919876543223" },
+        { name: "Sprinkler Irrigation", category: "Irrigation & Water Management Tools", description: "Sprays water over fields uniformly.", use: "Use for broad-acre irrigation of cereals and fodder.", contact: "+91 98765 43224", rent: "Mobile sprinkler rentals available.", apply: "tel:+919876543224" },
+        { name: "Automatic Irrigation Controller", category: "Irrigation & Water Management Tools", description: "Schedules irrigation automatically.", use: "Use to reduce labor and avoid overwatering.", contact: "+91 98765 43225", rent: "Pilot rental for smart irrigation.", apply: "tel:+919876543225" },
+        { name: "Soil Moisture Sensor", category: "Irrigation & Water Management Tools", description: "Measures soil moisture in the root zone.", use: "Use to irrigate only when the soil becomes dry.", contact: "+91 98765 43226", rent: "Sensor rental for seasonal irrigation control.", apply: "tel:+919876543226" },
+        { name: "Water Pump (electric / solar)", category: "Irrigation & Water Management Tools", description: "Lifts water to irrigation systems.", use: "Use pumps for canal, borewell or pond irrigation.", contact: "+91 98765 43227", rent: "Solar pump rental available for dry season.", apply: "tel:+919876543227" },
+        { name: "Soil pH Sensor", category: "Smart Farming / IoT Tools", description: "Measures soil acidity for nutrient planning.", use: "Use before planting to adjust lime and fertilizers.", contact: "+91 98765 43228", rent: "Short-term soil testing rentals available.", apply: "tel:+919876543228" },
+        { name: "Nutrient Sensor", category: "Smart Farming / IoT Tools", description: "Detects N, P and K levels in soil.", use: "Use to optimize fertilizer application.", contact: "+91 98765 43229", rent: "Rent sensors for crop nutrition trials.", apply: "tel:+919876543229" },
+        { name: "Temperature & Humidity Sensor", category: "Smart Farming / IoT Tools", description: "Tracks field or greenhouse climate.", use: "Use to manage crop stress and ventilation.", contact: "+91 98765 43230", rent: "Available as part of monitoring kits.", apply: "tel:+919876543230" },
+        { name: "Smart Irrigation Controller", category: "Smart Farming / IoT Tools", description: "Controls irrigation using sensor inputs.", use: "Use to automate drip or sprinkler systems.", contact: "+91 98765 43231", rent: "Rental for trial installation.", apply: "tel:+919876543231" },
+        { name: "Real-time Farm Monitoring System", category: "Smart Farming / IoT Tools", description: "Provides live farm telemetry and alerts.", use: "Use for remote field monitoring.", contact: "+91 98765 43232", rent: "Deploy as a 30-day trial kit.", apply: "tel:+919876543232" },
+        { name: "Crop Prediction System", category: "Smart Farming / IoT Tools", description: "Forecasts yield and crop health.", use: "Use to make data-driven planting decisions.", contact: "+91 98765 43233", rent: "Analytics service available by report.", apply: "tel:+919876543233" },
+        { name: "Disease Detection using Images", category: "Smart Farming / IoT Tools", description: "Identifies pests and diseases from photos.", use: "Use smartphone images for fast diagnosis.", contact: "+91 98765 43234", rent: "App-based service rental available.", apply: "tel:+919876543234" },
+        { name: "Yield Prediction Model", category: "Smart Farming / IoT Tools", description: "Predicts expected harvest quantity.", use: "Use to plan labor, inputs, and market timing.", contact: "+91 98765 43235", rent: "Reporting service rental available.", apply: "tel:+919876543235" },
+        { name: "Agricultural Drone", category: "Drones in Agriculture", description: "Used for mapping, monitoring and spraying.", use: "Use drones for fast field surveys and crop health checks.", contact: "+91 98765 43236", rent: "Drone rental for field monitoring.", apply: "tel:+919876543236" },
+        { name: "Drone Sprayer", category: "Drones in Agriculture", description: "Sprays pesticides and nutrients from the air.", use: "Use for even application over large areas.", contact: "+91 98765 43237", rent: "Hire spraying drone services by acre.", apply: "tel:+919876543237" },
+        { name: "Field Mapping Drone", category: "Drones in Agriculture", description: "Creates aerial maps and NDVI imagery.", use: "Use to identify problem zones and crop variability.", contact: "+91 98765 43238", rent: "One-day mapping rental available.", apply: "tel:+919876543238" },
+        { name: "NDVI Imaging Drone", category: "Drones in Agriculture", description: "Detects crop stress using infrared imagery.", use: "Use to monitor crop health and irrigation needs.", contact: "+91 98765 43239", rent: "NDVI crop scouting rental service.", apply: "tel:+919876543239" },
+        { name: "Portable Soil Testing Kit", category: "Soil & Crop Testing Tools", description: "Measures soil nutrients and pH in the field.", use: "Use for instant soil analysis before sowing.", contact: "+91 98765 43240", rent: "Kit rental for multiple sample testing.", apply: "tel:+919876543240" },
+        { name: "Digital Soil Analyzer", category: "Soil & Crop Testing Tools", description: "Provides accurate soil nutrient readings.", use: "Use to plan fertilizer and soil amendments.", contact: "+91 98765 43241", rent: "Short-term trial rental available.", apply: "tel:+919876543241" },
+        { name: "Portable Nutrient Tester", category: "Soil & Crop Testing Tools", description: "Tests soil and plant tissue nutrient levels.", use: "Use to adjust nutrient application precisely.", contact: "+91 98765 43242", rent: "Rent for seasonal nutrient monitoring.", apply: "tel:+919876543242" },
+        { name: "Lab-based Soil Analysis", category: "Soil & Crop Testing Tools", description: "Detailed laboratory soil testing service.", use: "Use for complete soil health and fertility reports.", contact: "+91 98765 43243", rent: "Send samples for analysis by lab.", apply: "tel:+919876543243" },
+        { name: "Weather Forecasting App", category: "Mobile Apps & Digital Tools", description: "Provides local weather forecasts and alerts.", use: "Use to schedule irrigation and field work.", contact: "+91 98765 43244", rent: "Subscribe for premium weather alerts.", apply: "tel:+919876543244" },
+        { name: "Market Price App", category: "Mobile Apps & Digital Tools", description: "Shows real-time mandi prices and trends.", use: "Use to decide where and when to sell crop.", contact: "+91 98765 43245", rent: "Subscription service for price intelligence.", apply: "tel:+919876543245" },
+        { name: "Crop Advisory App", category: "Mobile Apps & Digital Tools", description: "Offers crop-specific guidance and alerts.", use: "Use for pest, nutrient and irrigation recommendations.", contact: "+91 98765 43246", rent: "App access available with trial.", apply: "tel:+919876543246" },
+        { name: "Irrigation Scheduling App", category: "Mobile Apps & Digital Tools", description: "Helps plan watering schedules effectively.", use: "Use to avoid overwatering and save water.", contact: "+91 98765 43247", rent: "Try the app before full deployment.", apply: "tel:+919876543247" },
+        { name: "AI Farming Assistant App", category: "Mobile Apps & Digital Tools", description: "Chatbot assistant for farm queries.", use: "Use to get advice on crops, pests, and markets.", contact: "+91 98765 43248", rent: "Access via app subscription.", apply: "tel:+919876543248" },
+        { name: "Automatic Feeder", category: "Livestock Farming Tools", description: "Dispenses feed automatically for animals.", use: "Use in dairy and poultry to maintain feeding schedules.", contact: "+91 98765 43249", rent: "Rent for temporary livestock feeding.", apply: "tel:+919876543249" },
+        { name: "Milk Collection Machine", category: "Livestock Farming Tools", description: "Automates milking and storage handling.", use: "Use for hygienic and efficient dairy milking.", contact: "+91 98765 43250", rent: "Hire for milking cycles.", apply: "tel:+919876543250" },
+        { name: "Animal Health Monitoring Tags", category: "Livestock Farming Tools", description: "Tracks health and movement of livestock.", use: "Use to monitor grazing, illness and reproduction.", contact: "+91 98765 43251", rent: "Kit rental available for farms.", apply: "tel:+919876543251" },
+        { name: "Temperature-controlled Shed", category: "Livestock Farming Tools", description: "Maintains stable temperature for animals.", use: "Use to protect livestock and seedlings from heat or cold.", contact: "+91 98765 43252", rent: "Rent climate-controlled shelters.", apply: "tel:+919876543252" },
+        { name: "Automatic Milking Machine", category: "Livestock Farming Tools", description: "Reduces labor with automated dairy milking.", use: "Use to milk animals more efficiently and hygienically.", contact: "+91 98765 43253", rent: "Rent for herd-based operations.", apply: "tel:+919876543253" },
+        { name: "Grain Silo", category: "Post-harvest Tools", description: "Dry storage for harvested grain.", use: "Use to store grain safely and reduce spoilage.", contact: "+91 98765 43272", rent: "Seasonal storage rental available.", apply: "tel:+919876543272" },
+        { name: "Aeration Fans for Silo", category: "Post-harvest Tools", description: "Keeps stored grain dry with airflow.", use: "Use to prevent heat buildup and mold.", contact: "+91 98765 43273", rent: "Rent fans for silo storage.", apply: "tel:+919876543273" },
+        { name: "Moisture Sensor for Grain", category: "Post-harvest Tools", description: "Monitors moisture in stored grain.", use: "Use to check grain dryness before sale.", contact: "+91 98765 43274", rent: "Rent for harvest storage monitoring.", apply: "tel:+919876543274" },
+        { name: "Seed Treatment Equipment", category: "Modern Farm Machinery (Mechanized Tools)", description: "Applies protective coatings to seeds.", use: "Use to improve germination and disease resistance.", contact: "+91 98765 43278", rent: "Seasonal rental for sowing preparation.", apply: "tel:+919876543278" },
+        { name: "Seed Coating Machine", category: "Modern Farm Machinery (Mechanized Tools)", description: "Uniformly coats seeds with treatment.", use: "Use to protect seed against pests and pathogens.", contact: "+91 98765 43279", rent: "Available for seed prep services.", apply: "tel:+919876543279" },
+        { name: "Remote Sensing Platform", category: "Mobile Apps & Digital Tools", description: "Provides satellite and drone imagery.", use: "Use for crop monitoring and field planning.", contact: "+91 98765 43280", rent: "Subscription-based imagery service.", apply: "tel:+919876543280" },
+        { name: "Satellite Imagery Access", category: "Mobile Apps & Digital Tools", description: "Delivers remote sensing data for farms.", use: "Use to monitor large or remote fields.", contact: "+91 98765 43281", rent: "Imagery on demand.", apply: "tel:+919876543281" },
+        { name: "Mobile Field Scouting App", category: "Mobile Apps & Digital Tools", description: "Records field observations on the go.", use: "Use to document pests, diseases, and crop conditions.", contact: "+91 98765 43282", rent: "App trial available for scouting teams.", apply: "tel:+919876543282" },
+        { name: "Digital Soil Mapping Tool", category: "Mobile Apps & Digital Tools", description: "Creates soil maps for precision farming.", use: "Use to plan seed, fertilizer and irrigation zones.", contact: "+91 98765 43283", rent: "Service rental for field mapping.", apply: "tel:+919876543283" }
+    ];
+
+    const toolSearch = document.getElementById('toolSearch');
+    const toolGrid = document.getElementById('toolGrid');
+    const toolDetailsPanel = document.getElementById('toolDetailsPanel');
+    const detailEmpty = document.getElementById('detailEmpty');
+    const detailContent = document.getElementById('detailContent');
+    const toolsCount = document.getElementById('toolsCount');
+    const toolsTotal = document.getElementById('toolsTotal');
+    const categoryButtons = document.querySelectorAll('.category-button');
+    const showMoreButton = document.getElementById('showMoreTools');
+    const clearButton = document.getElementById('clearToolSearch');
+
+    let activeCategory = 'all';
+    let visibleCount = 24;
+
+    function formatToolCard(tool) {
+        return `
+            <div class="tool-card" data-name="${tool.name}">
+                <div class="tool-card-header">
+                    <div>
+                        <h4>${tool.name}</h4>
+                        <div class="tool-category">${tool.category}</div>
+                    </div>
+                    <button class="view-details">View</button>
+                </div>
+                <p>${tool.description}</p>
+                <div class="tool-footer">
+                    <span>Rent: ${tool.rent}</span>
+                    <a href="${tool.apply}">Call</a>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderToolGrid(filtered = null) {
+        const list = filtered || agriTools;
+        const matching = list.filter(tool => activeCategory === 'all' || tool.category === activeCategory);
+        toolsTotal.textContent = matching.length;
+        toolsCount.textContent = Math.min(matching.length, visibleCount);
+        toolGrid.innerHTML = matching.slice(0, visibleCount).map(formatToolCard).join('') || '<div class="empty-state">No tools found. Try a different keyword.</div>';
+        bindToolButtons();
+    }
+
+    function bindToolButtons() {
+        document.querySelectorAll('.tool-card .view-details').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.tool-card');
+                const name = card.dataset.name;
+                const tool = agriTools.find(item => item.name === name);
+                if (tool) showToolDetails(tool);
+            });
+        });
+    }
+
+    function showToolDetails(tool) {
+        detailEmpty.classList.add('hidden');
+        detailContent.classList.remove('hidden');
+        detailContent.innerHTML = `
+            <h4>${tool.name}</h4>
+            <p><strong>Category:</strong> ${tool.category}</p>
+            <p><strong>Description:</strong> ${tool.description}</p>
+            <p><strong>How to use:</strong> ${tool.use}</p>
+            <p><strong>Rental contact:</strong> ${tool.contact}</p>
+            <div class="detail-actions">
+                <a href="${tool.apply}" class="btn btn-primary">Call to rent</a>
+                <a href="mailto:rental@agrihelp.in?subject=Rent%20request%20for%20${encodeURIComponent(tool.name)}" class="btn btn-secondary">Apply for rent</a>
+            </div>
+        `;
+    }
+
+    function filterTools() {
+        const query = toolSearch.value.trim().toLowerCase();
+        const filtered = agriTools.filter(tool => {
+            return tool.name.toLowerCase().includes(query) || tool.category.toLowerCase().includes(query) || tool.description.toLowerCase().includes(query) || tool.use.toLowerCase().includes(query);
+        });
+        visibleCount = 24;
+        renderToolGrid(filtered);
+    }
+
+    toolSearch.addEventListener('input', filterTools);
+    clearButton.addEventListener('click', () => {
+        toolSearch.value = '';
+        visibleCount = 24;
+        renderToolGrid();
+    });
+    showMoreButton.addEventListener('click', () => {
+        visibleCount += 24;
+        filterTools();
+    });
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            activeCategory = button.dataset.category;
+            visibleCount = 24;
+            filterTools();
+        });
+    });
+
+    renderToolGrid();
+</script>
+{% endblock %}

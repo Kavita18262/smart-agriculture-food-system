@@ -1,0 +1,229 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}
+{{ category_name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{% set icons = {
+    "Traditional Tools": "🌾",
+    "Farm Machinery": "🚜",
+    "Irrigation & Water Management": "💧",
+    "Smart Farming / IoT": "🤖",
+    "Agricultural Drones": "🛰️",
+    "Soil & Crop Testing": "🧪",
+    "Digital Agriculture": "📱",
+    "Livestock Tools": "🐄",
+    "Post Harvest Tools": "📦"
+} %}
+
+<h1 class="page-title">
+    <span class="title-icon">{{ icons.get(category_name, "🌿") }}</span>
+    {{ category_name }}
+</h1>
+    
+
+    <p class="subtitle">
+        {{ tools|length }} tools available in this category
+    </p>
+
+    <div class="tool-grid">
+
+        {% for tool in tools %}
+
+        <div class="tool-card">
+
+            <h2>{{ tool.name }}</h2>
+
+            <hr>
+
+            <div class="section">
+
+                <h4>📖 Description</h4>
+
+                <ul>
+                    {% for line in tool.description.split('\n') %}
+                        {% if line.strip() %}
+                        <li>{{ line }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div class="section">
+
+                <h4>⚙️ Uses</h4>
+
+                <ul>
+                    {% for line in tool.use.split('\n') %}
+                        {% if line.strip() %}
+                        <li>{{ line }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div class="contact-box">
+
+                <p>
+                    📞 <strong>Contact</strong><br>
+                    {{ tool.contact }}
+                </p>
+
+            </div>
+
+            <a class="call-btn" href="{{ tool.apply }}">
+                📞 Call to Rent
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<style>
+
+.container{
+    padding:40px;
+}
+
+.page-title{
+    text-align:center;
+    font-size:40px;
+    color:#14532d;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+.tool-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+    gap:30px;
+
+}
+
+.tool-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+    border-top:6px solid #22c55e;
+
+}
+
+.tool-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+}
+
+.tool-card h2{
+
+    color:#166534;
+
+    margin-bottom:15px;
+
+    text-align:center;
+
+}
+
+.section{
+
+    margin-top:20px;
+
+}
+
+.section h4{
+
+    color:#15803d;
+
+    margin-bottom:10px;
+
+}
+
+.section ul{
+
+    padding-left:22px;
+
+    line-height:1.8;
+
+    color:#444;
+
+}
+
+.section li{
+
+    margin-bottom:8px;
+
+}
+
+.contact-box{
+
+    margin-top:25px;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    background:#f3f4f6;
+
+}
+
+.call-btn{
+
+    display:block;
+
+    margin-top:20px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.call-btn:hover{
+
+    background:#15803d;
+
+}
+
+</style>
+
+{% endblock %}

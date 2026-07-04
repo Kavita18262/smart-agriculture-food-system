@@ -1,0 +1,84 @@
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+
+        <h2>🌿 AgriMitra</h2>
+
+        {% if photo %}
+
+            <img src="{{ photo }}" class="sidebar-photo" alt="Profile">
+
+        {% else %}
+
+            <img src="{{ url_for('static', filename='images/default-profile.png') }}"
+                 class="sidebar-photo"
+                 alt="Profile">
+
+        {% endif %}
+
+        <h3>{{ name }}</h3>
+
+        <small>🌾 Smart Farmer</small>
+
+    </div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="{{ url_for('dashboard') }}"
+               class="{% if request.path == url_for('dashboard') %}active{% endif %}">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('assistant') }}"
+               class="{% if request.path == url_for('assistant') %}active{% endif %}">
+                <i class="fa-solid fa-robot"></i>
+                <span>AI Assistant</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('weather_page') }}"
+               class="{% if request.path == url_for('weather_page') %}active{% endif %}">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <span>Weather</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/agritech-tools"
+               class="{% if request.path == '/agritech-tools' %}active{% endif %}">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>AgriTech Tools</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('analytics') }}"
+               class="{% if request.path == url_for('analytics') %}active{% endif %}">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Analytics</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ url_for('profile') }}"
+               class="{% if request.path == url_for('profile') %}active{% endif %}">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </li>
+
+        <li class="logout-link">
+            <a href="{{ url_for('logout') }}">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </li>
+
+    </ul>
+
+</aside>

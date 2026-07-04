@@ -1,0 +1,802 @@
+/*==================================================
+AGRIMITRA AI WEATHER
+PART 1
+==================================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+.weather-page{
+
+    padding:30px;
+
+    background:linear-gradient(
+        135deg,
+        #edfdf5,
+        #f8fffb
+    );
+
+    min-height:100vh;
+
+}
+
+/*=========================
+HERO
+=========================*/
+
+.weather-hero{
+
+    display:grid;
+
+    grid-template-columns:1.5fr .8fr;
+
+    align-items:center;
+
+    gap:40px;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:linear-gradient(
+        135deg,
+        #066b4d,
+        #0f9d58,
+        #1fb96c
+    );
+
+    color:white;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.15);
+
+}
+
+.weather-hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    right:-120px;
+
+    top:-120px;
+
+}
+
+.hero-left{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.hero-badge{
+
+    display:inline-block;
+
+    padding:10px 20px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.15);
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+.hero-left h1{
+
+    font-size:48px;
+
+    margin-bottom:18px;
+
+    font-weight:700;
+
+}
+
+.hero-left p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#eefcf6;
+
+    max-width:700px;
+
+}
+
+.hero-right{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.hero-right img{
+
+    width:220px;
+
+    animation:floatWeather 4s ease-in-out infinite;
+
+}
+
+@keyframes floatWeather{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-14px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================
+WEATHER CARDS
+=========================*/
+
+.weather-cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+    margin-top:35px;
+
+}
+
+.weather-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.weather-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 22px 45px rgba(0,0,0,.14);
+
+}
+
+.weather-card .icon{
+
+    width:80px;
+
+    height:80px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#ecfdf5;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:38px;
+
+    margin-bottom:18px;
+
+}
+
+.weather-card h4{
+
+    color:#64748b;
+
+    font-size:17px;
+
+    margin-bottom:10px;
+
+}
+
+.weather-card h2{
+
+    color:#14532d;
+
+    font-size:36px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
+.weather-card small{
+
+    color:#94a3b8;
+
+}
+/*==================================================
+PART 2
+AI RECOMMENDATION + HIGHLIGHTS + FARM TIPS
+==================================================*/
+
+/*=========================
+AI WEATHER CARD
+=========================*/
+
+.weather-advice{
+
+    margin-top:35px;
+
+}
+
+.section-title{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#14532d;
+
+    margin-bottom:20px;
+
+}
+
+.advice-card{
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.advice-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    background:rgba(34,197,94,.06);
+
+    border-radius:50%;
+
+    top:-100px;
+
+    right:-100px;
+
+}
+
+.tip{
+
+    background:#f0fdf4;
+
+    border-left:6px solid #22c55e;
+
+    padding:18px 20px;
+
+    border-radius:15px;
+
+    margin-bottom:18px;
+
+    font-size:17px;
+
+    color:#334155;
+
+    transition:.35s;
+
+}
+
+.tip:hover{
+
+    transform:translateX(8px);
+
+    background:#dcfce7;
+
+}
+
+/*=========================
+HIGHLIGHTS
+=========================*/
+
+.weather-highlights{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+
+    margin-top:35px;
+
+}
+
+.highlight{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:#ffffff;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.highlight:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.highlight span{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#ecfdf5;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+}
+
+.highlight h4{
+
+    color:#14532d;
+
+    margin-bottom:6px;
+
+    font-size:20px;
+
+}
+
+.highlight p{
+
+    color:#64748b;
+
+    line-height:1.6;
+
+}
+
+/*=========================
+TODAY TIPS
+=========================*/
+
+.tips-section{
+
+    margin-top:45px;
+
+}
+
+.tips-section h2{
+
+    font-size:34px;
+
+    color:#14532d;
+
+    margin-bottom:25px;
+
+}
+
+.tips-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.tip-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+}
+
+.tip-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 22px 45px rgba(0,0,0,.15);
+
+}
+
+.tip-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#ecfdf5;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+}
+
+.tip-card h3{
+
+    color:#166534;
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+}
+
+.tip-card p{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+    font-size:16px;
+
+}
+/*==================================================
+PART 3
+FOOTER + RESPONSIVE + PREMIUM FINISH
+==================================================*/
+
+/*=========================
+FOOTER
+=========================*/
+
+.weather-footer{
+
+    margin-top:45px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+
+}
+
+.footer-card{
+
+    background:linear-gradient(
+        135deg,
+        #0f9d58,
+        #16a34a
+    );
+
+    color:white;
+
+    padding:28px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+    transition:.35s;
+
+}
+
+.footer-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 22px 45px rgba(0,0,0,.18);
+
+}
+
+/*=========================
+GLASS EFFECT
+=========================*/
+
+.weather-card,
+.tip-card,
+.highlight,
+.advice-card{
+
+    backdrop-filter:blur(14px);
+
+}
+
+/*=========================
+SMOOTH ANIMATION
+=========================*/
+
+.weather-card,
+.tip-card,
+.highlight,
+.footer-card,
+.tip{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================
+RESPONSIVE
+=========================*/
+
+@media(max-width:1200px){
+
+.weather-cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.weather-highlights{
+
+grid-template-columns:1fr;
+
+}
+
+.tips-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.weather-footer{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.weather-page{
+
+padding:18px;
+
+}
+
+.weather-hero{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+padding:30px 22px;
+
+}
+
+.hero-left h1{
+
+font-size:34px;
+
+}
+
+.hero-left p{
+
+font-size:17px;
+
+}
+
+.hero-right{
+
+margin-top:20px;
+
+}
+
+.hero-right img{
+
+width:170px;
+
+}
+
+.weather-cards{
+
+grid-template-columns:1fr;
+
+}
+
+.weather-card{
+
+padding:25px;
+
+}
+
+.weather-card h2{
+
+font-size:30px;
+
+}
+
+.section-title{
+
+font-size:28px;
+
+}
+
+.tips-section h2{
+
+font-size:28px;
+
+}
+
+.highlight{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.footer-card{
+
+font-size:18px;
+
+padding:22px;
+
+}
+
+}
+
+/*=========================
+PREMIUM HOVER
+=========================*/
+
+.weather-card:hover .icon,
+
+.tip-card:hover .tip-icon,
+
+.highlight:hover span{
+
+transform:rotate(10deg) scale(1.08);
+
+transition:.35s;
+
+}
+
+.hero-badge{
+
+box-shadow:0 6px 20px rgba(255,255,255,.18);
+
+}
+
+.weather-card h2{
+
+background:linear-gradient(
+90deg,
+#15803d,
+#22c55e
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.tip-card h3{
+
+transition:.3s;
+
+}
+
+.tip-card:hover h3{
+
+color:#16a34a;
+
+}
+
+.footer-card b{
+
+color:#d9ff57;
+
+}

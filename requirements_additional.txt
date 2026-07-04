@@ -1,0 +1,7 @@
+# Additional dependencies
+
+gTTS==2.3.0
+requests
+python-dotenv
+openai
+Flask

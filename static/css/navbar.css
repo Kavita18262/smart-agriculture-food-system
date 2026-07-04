@@ -1,0 +1,381 @@
+/* ===========================
+   PREMIUM NAVBAR
+=========================== */
+.navbar{
+    display:flex !important;
+    justify-content:space-between !important;
+    align-items:center !important;
+}
+.navbar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:80px;
+
+    background:#fff;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 35px;
+
+    border-bottom:1px solid #E5E7EB;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+
+    z-index:999;
+
+}
+
+/* LEFT */
+
+.nav-left{
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+}
+
+.menu-btn{
+
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    background:#F8FAFC;
+
+    font-size:20px;
+
+    color:#1E293B;
+
+    transition:.3s;
+
+}
+
+.menu-btn:hover{
+
+    background:#16A34A;
+
+    color:white;
+
+}
+
+.brand{
+
+    display:flex;
+    align-items:center;
+    gap:16px;
+
+}
+
+.brand-logo{
+
+    width:56px;
+    height:56px;
+
+    border-radius:18px;
+
+    background:linear-gradient(135deg,#22C55E,#16A34A);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:28px;
+
+    color:white;
+
+    box-shadow:0 8px 18px rgba(34,197,94,.35);
+
+}
+
+.brand-info h2{
+
+    font-size:24px;
+
+    color:#0F172A;
+
+    font-weight:700;
+
+}
+
+.brand-info p{
+
+    margin-top:2px;
+
+    font-size:13px;
+
+    color:#64748B;
+
+}
+
+/* RIGHT */
+
+.nav-right{
+
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+}
+
+/* CLOCK */
+
+.time-card{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:10px 18px;
+
+    border-radius:16px;
+
+    background:#F8FAFC;
+
+}
+
+.time-card span{
+
+    color:#22C55E;
+
+    font-size:28px;
+
+}
+
+.time-card small{
+
+    color:#64748B;
+
+    font-size:12px;
+
+}
+
+.time-card h4{
+
+    margin-top:2px;
+
+    color:#0F172A;
+
+    font-size:18px;
+
+}
+
+/* NOTIFICATION */
+
+.notification{
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:#F8FAFC;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    font-size:22px;
+
+    transition:.3s;
+
+}
+
+.notification:hover{
+
+    background:#DCFCE7;
+
+}
+
+.notify-dot{
+
+    position:absolute;
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#EF4444;
+
+    top:11px;
+    right:12px;
+
+}
+/*==============================
+NAVBAR PROFILE
+==============================*/
+
+.profile-menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.nav-profile{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #22c55e;
+
+}
+
+.profile-info h4{
+
+    font-size:16px;
+
+    color:#0f172a;
+
+}
+
+.profile-info small{
+
+    color:#64748b;
+
+}
+/*==============================
+PROFILE
+==============================*/
+
+.profile-menu{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-left:15px;
+
+}
+
+.nav-profile{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #22C55E;
+
+}
+
+.profile-info h4{
+
+    font-size:16px;
+
+    color:#1e293b;
+
+    margin:0;
+
+}
+
+.profile-info small{
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+/*==============================
+PROFILE
+==============================*/
+
+.nav-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-left:20px;
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    background:white;
+
+    box-shadow:
+
+        0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.nav-profile{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #22c55e;
+
+}
+
+.nav-user-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.nav-user-info h4{
+
+    margin:0;
+
+    font-size:16px;
+
+    color:#14532d;
+
+    font-weight:700;
+
+}
+
+.nav-user-info span{
+
+    font-size:13px;
+
+    color:#64748b;
+
+}
+
+.nav-user:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+
+        0 15px 35px rgba(34,197,94,.18);
+
+    transition:.35s;
+
+}

@@ -1,0 +1,290 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}AI Assistant{% endblock %}
+
+{% block css %}
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/assistant.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="assistant-page">
+
+    <!-- =========================
+            HERO
+    ========================== -->
+
+    <section class="assistant-hero">
+
+        <div class="hero-left">
+
+            <div class="hero-badge">
+
+                🌿 AgriMitra AI
+
+            </div>
+
+            <h1 id="greeting">
+
+                Good Morning, {{ fullname }}
+
+            </h1>
+
+            <p>
+
+                Your Smart Farming Assistant powered by AI.
+
+                Ask questions about crops, diseases,
+
+                irrigation, fertilizer, weather and farming.
+
+            </p>
+
+            <div class="hero-tags">
+
+                <span>🌾 Crop Guide</span>
+
+                <span>🐛 Disease Detection</span>
+
+                <span>💧 Irrigation</span>
+
+                <span>🌦 Weather</span>
+
+                <span>🤖 AI Powered</span>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="hero-image">
+
+                🤖
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            CHAT SECTION
+    ========================== -->
+
+    <section class="assistant-card">
+
+        <!-- Header -->
+
+        <div class="assistant-header">
+
+            <div>
+
+                <h2>
+
+                    💬 AI Conversation
+
+                </h2>
+
+                <small id="status">
+
+                    🟢 Online
+
+                </small>
+
+            </div>
+
+            <div class="assistant-actions">
+
+                <button
+                    id="clearBtn"
+                    class="icon-btn">
+
+                    🗑
+
+                </button>
+
+                <button
+                    id="voiceBtn"
+                    class="icon-btn">
+
+                    🎤
+
+                </button>
+
+                <button
+                    id="speakBtn"
+                    class="icon-btn">
+
+                    🔊
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Chat -->
+
+        <div
+            id="chatBox"
+            class="chat-box">
+
+            {% if chat_history %}
+
+                {% for chat in chat_history %}
+
+                    <div class="chat-row {{ chat.role }}">
+
+                        <div class="avatar">
+
+                            {% if chat.role=="user" %}
+
+                                👤
+
+                            {% else %}
+
+                                🌿
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="bubble">
+
+                            {{ chat.content }}
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="chat-row assistant">
+
+                    <div class="avatar">
+
+                        🌿
+
+                    </div>
+
+                    <div class="bubble">
+
+                        👋 Hello {{ fullname }}!
+
+                        Welcome to AgriMitra AI.
+
+                        How can I help you today?
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Suggestions -->
+
+        <div class="suggestions">
+
+            <button class="suggestion">
+
+                🌾 Best Crop
+
+            </button>
+
+            <button class="suggestion">
+
+                💧 Irrigation Tips
+
+            </button>
+
+            <button class="suggestion">
+
+                🌦 Weather Advice
+
+            </button>
+
+            <button class="suggestion">
+
+                🐛 Plant Disease
+
+            </button>
+
+        </div>
+                <!-- =========================
+                INPUT AREA
+        ========================== -->
+
+        <div class="assistant-input-area">
+
+            <textarea
+                id="question"
+                rows="3"
+                placeholder="Ask anything about farming..."></textarea>
+
+            <div class="input-actions">
+
+                <label
+                    for="imageFile"
+                    class="upload-btn">
+
+                    🖼 Image
+
+                </label>
+
+                <input
+                    type="file"
+                    id="imageFile"
+                    accept="image/*"
+                    hidden>
+
+                <button
+                    id="askBtn"
+                    class="send-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Send
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+                FOOTER
+        ========================== -->
+
+        <div class="assistant-footer">
+
+            <div class="footer-left">
+
+                🌿 Powered by AgriMitra AI
+
+            </div>
+
+            <div class="footer-right">
+
+                <span id="clock">
+
+                    🕒 --:--
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/assistant.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+/* ===========================
+   AgriMitra Home Page
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    height:100vh;
+
+    background:linear-gradient(135deg,#0F766E,#14B8A6,#22C55E);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+.container{
+
+    width:90%;
+
+    max-width:1200px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:white;
+
+}
+
+.left{
+
+    width:50%;
+
+}
+
+.left h1{
+
+    font-size:58px;
+
+    margin-bottom:20px;
+
+    line-height:1.2;
+
+}
+
+.left p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    margin-bottom:35px;
+
+    opacity:.95;
+
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:15px 35px;
+
+    background:white;
+
+    color:#0F766E;
+
+    font-weight:600;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    margin-right:15px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.2);
+
+}
+
+.right{
+
+    width:45%;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+.circle{
+
+    width:400px;
+
+    height:400px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(15px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:180px;
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+}
