@@ -1,8 +1,11 @@
 .env
+firebase_key.json
 __pycache__/
 *.pyc
 *.pkl
 *.h5
 *.db
+instance/
+.vscode/
 venv/
 uploads/

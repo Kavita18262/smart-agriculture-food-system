@@ -777,8 +777,6 @@ background:linear-gradient(
 #22c55e
 );
 
--webkit-background-clip:text;
-
 -webkit-text-fill-color:transparent;
 
 }
