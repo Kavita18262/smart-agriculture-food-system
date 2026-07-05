@@ -26,8 +26,10 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from werkzeug.utils import secure_filename
-file_path =r"C:\Users\hp\Downloads\soil_moisture (2).csv"
-df = pd.read_csv("augmented_soil_data.csv")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+df = pd.read_csv(os.path.join(BASE_DIR, "augmented_soil_data.csv"))
+
 model = joblib.load(os.path.join(BASE_DIR, "soil_model.pkl"))
 
 df.columns = (
